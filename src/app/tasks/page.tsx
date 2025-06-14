@@ -50,7 +50,7 @@ export default function TasksPage() {
     }
 
     setTaskIndex(completed.length);
-  }, []);
+  }, [router]);
 
   const handleLocationCheck = () => {
     if (!task.location) return;
@@ -110,7 +110,7 @@ export default function TasksPage() {
       setPhotoUploaded(true);
       setUploading(false);
       return true;
-    } catch (e) {
+    } catch {
       setError('Upload error');
       setUploading(false);
       return false;

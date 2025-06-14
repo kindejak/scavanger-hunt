@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   try {
     // Parse incoming form data
     const formData = await req.formData();
-    const file = formData.get('file');
+    const file = formData.get('file') as File | null;
 
     if (!file || !(file instanceof Blob)) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
@@ -28,14 +28,14 @@ export async function POST(req: Request) {
     }
 
     // Use original filename if available or fallback
-    const filename = (file as any).name || `upload-${Date.now()}.jpg`;
+    const filename = (file as File).name || `upload-${Date.now()}.jpg`;
     const filePath = path.join(uploadDir, filename);
 
     // Write file to disk
     await fs.promises.writeFile(filePath, buffer);
 
     return NextResponse.json({ message: 'File uploaded', filename });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
   }
 }

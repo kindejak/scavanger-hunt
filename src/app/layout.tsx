@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <BackgroundStickers count={40} />
+        <BackgroundStickers/>
         {children}
       </body>
     </html>

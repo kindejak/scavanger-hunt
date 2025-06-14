@@ -26,7 +26,7 @@ export default function FinishPage() {
     localStorage.setItem('endTime', endTime.toString());
     const totalTime = endTime - startTime;
     setDuration(formatDuration(totalTime));
-  }, []);
+  }, [router]);
 
   return (
     <main className="p-6 text-center">
